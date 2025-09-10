@@ -8,14 +8,14 @@ pip install -r requirements.txt
 
 #### using ollama:
 
-MODEL_BASE_URL=http://localhost:11434
-API_BASE=http://localhost:11434
+MODEL_BASE_URL=http://localhost:11434  
+API_BASE=http://localhost:11434  
 MODEL_NAME=INSERT_YOUR_MODEL_NAME_HERE
 
 #### using OpenAI:
 
-OPENAI_API_KEY=INSERT_YOUR_OPENAI_API_KEY_HERE
-OPENAI_API_BASE=https://api.openai.com/v1
+OPENAI_API_KEY=INSERT_YOUR_OPENAI_API_KEY_HERE  
+OPENAI_API_BASE=https://api.openai.com/v1  
 MODEL_NAME=INSERT_YOUR_OPENAI_MODEL_NAME_HERE
 
 ### To run the program:
