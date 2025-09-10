@@ -1,3 +1,5 @@
+# AutoDevCrew
+
 ## How to setup the project:
 
 pip install -r requirements.txt
@@ -24,9 +26,12 @@ MODEL_NAME=INSERT_YOUR_OPENAI_MODEL_NAME_HERE
 
 ### To run the program:
 
+```Bash
 panel serve app/src/autodevcrew_flow/main.py
+```
 
 ### To run in benchmark mode:
 
-Place your SWE-bench.json file containing the SWE-bench task information and tasks.txt containing the list of instance_ids to run file in the [bench_files](./bench_files/) folder.  
+Place your SWE-bench.json file containing the SWE-bench task information and tasks.txt containing the list of instance_ids to run file in the [bench_files](./bench_files/) folder.
+
 Sample versions of these files can be found in [the samples folder](./sample/)
