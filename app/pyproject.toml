@@ -1,0 +1,18 @@
+[project]
+name = "autodevcrew_flow"
+version = "0.1.0"
+description = "bench-flow using crewAI"
+authors = [{ name = "Patrick Casey", email = "P.CASEY2-2022@hull.ac.uk" }]
+requires-python = ">=3.10,<3.13"
+dependencies = ["crewai[tools]>=0.108.0,<1.0.0"]
+
+[project.scripts]
+kickoff = "autodevcrew_flow.main:kickoff"
+plot = "autodevcrew_flow.main:plot"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.crewai]
+type = "flow"

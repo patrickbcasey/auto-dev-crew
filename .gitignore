@@ -1,0 +1,5 @@
+SWE-bench/
+__pycache__
+*.venv
+*.env
+bench_files/*

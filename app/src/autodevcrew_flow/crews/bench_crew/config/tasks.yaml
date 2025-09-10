@@ -1,0 +1,97 @@
+requirements_task:
+  description: >
+    Create requirements documents, use cases, and user stories to capture and describe the requirements of the software project as described by:
+    "You will be provided with a partial code base and an issue statement explaining a problem to resolve. <issue>{problem_statement}.</issue>"
+  expected_output: >
+    A well-formatted list of all the requirements that the project must meet in order to be considered a working MVP.
+  agent: design_agent
+
+code_planning_task:
+  description: >
+    Create a design file that describes the design of the software system, capturing all of the functions and features to be programmed, as well as the coding tasks necessary to complete the project.
+  expected_output: >
+    A well formatted list of descriptions of the functions and features that will be found in the project.
+  agent: design_agent
+
+test_write_task:
+  description: >
+    The problem statement is "{problem_statement}"
+    The issue is found in {bug_file_contents}.
+    The file will be run from the root directory of the project and executed using `python3 bug_reproduce.py`.
+    The Python script should raise an `AssertionError` when the issue is present and a stack trace of the issue should be printed.
+    The script should exit with a code 0 when the issue is resolved.
+    Use the following function to print the stack trace:
+    ```
+    {stacktrace_helper}
+    ```
+  expected_output: >
+    Write a python file `bug_reproduce.py` to reproduce the issue.
+    Output only the code.
+    Put the file in a code block.
+  agent: test_agent
+
+coding_task:
+  description: >
+    You are working on an issue with this problem description: {problem_statement}.
+    The code context passed to you by another engineer is: {bug_file_contents}.
+    Your task is to write a patch that resolves the issue.
+    You should make as few modifications to the code as possible whil solving the issue.
+    First explain your reasoning for the solution step by step, then write the patch.
+  expected_output: >
+    Return the patch in the format below.
+    Within `<file></file>`, replace `...` with the actual file path.
+    Within `<original></original> replace `...` with a continuous snippet of original code from the program.
+    Within `<patch></patch>`, replace `...` with the fixed version of the original code.
+    When writing and changing code, the code is in Python, so you must pay attention to indendation.
+    You can modify multiple files if needed.
+
+    Example format:
+    # modification 1
+    ```
+    <file>...</file>
+    <original>...</original>
+    <patch>...</patch>
+
+     # modification 2
+    ```
+    <file>...</file>
+    <original>...</original>
+    <patch>...</patch>
+    ```
+    The original code block MUST exactly match to a CONTINUOUS block of code taken from original program as it will be used to locate the and replace the code block. Do not skip code sections with "...".
+  agent: coding_agent
+# patch_test_correctness_task:
+#   description: >
+#     Decide if the given patch resolves the issue using the given test, and whether the test correctly reproduces the issue.
+#     The given patch is the following: ```{patch}```.
+#     The given test is the following: ```{test}```.
+#   expected_output: >
+#     Give your analysis of the patch.
+#     Give your analysis of the test.
+#     Answer in the following json format:
+#     ```
+#     {
+#       "patch_is_correct": "...",
+#       "test_is_correct": "...",
+#       "changes_to_patch": "...",
+#       "changes_to_test": "..."
+#     }
+#     ```
+#     where "patch_is_correct" and "test_is_correct" are "True" or "False"
+#     If patch_is_correct or test_is_correct is False, "changes_to_patch" and "changes_to_test" should contain explanations about how to make corrections.
+#     If patch_is_correct or test_is_correct is True, you may leave those fields empty.
+#   agent: test_agent
+
+# pull_review_task:
+#   description: >
+#     Analyze all of the patches and select the patch which best resolves the issue. Choose the number of the patch and the reasoning behind your choice. The patches are as follows: {patches}
+#   expected_output: >
+#     Provide your answer in the following json format:
+#     ```
+#     {
+#       patch_number: ...,
+#       analysis: ...
+#     }
+#     ```
+#     where `patch number` corresponds to the number of the working patch and analysis is a string that explains the reasoning behind your selection.
+#   agent: test_agent

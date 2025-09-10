@@ -1,0 +1,42 @@
+requirements_task:
+  description: >
+    The request from the user is to code {project}. Create requirements documents, use cases, and user stories to capture and describe the requirements of the software project as described.
+    Ask user input for more information
+  expected_output: >
+    A well-formatted list of all the requirements that the project must meet in order to be considered a working MVP.
+  agent: design_agent
+
+code_planning_task:
+  description: >
+    Create a design file that describes the design of the {project} software system, capturing all of the functions and features to be programmed, as well as the coding tasks necessary to complete the project.
+    Ask user input for more information
+  expected_output: >
+    A well formatted list of descriptions of the functions and features that will be found in the project.
+  agent: design_agent
+
+test_planning_task:
+  description: >
+    Describe the unit tests that must be written and passed by the {project} project code in order to ensure bug-free functionality that meets the requirements.
+    Write those unit tests in Python.
+    Ask user input for more information
+  expected_output: >
+    A well formatted list of descriptions of the unit tests that need to be written and passed by the project code.
+    Working and correctly formatted Python code that corresponds to unit tests for the project.
+  agent: design_agent
+
+coding_task:
+  description: >
+    Program {project} in Python. Use the requirements list and closely follow the coding plan to produce high-quality software code that meets all of the requirements.
+    Ask user input for more information
+  expected_output: >
+    Working and correctly formatted Python code for {project}.
+    You must output only Python code.
+  agent: coding_agent
+
+testing_task:
+  description: >
+    Run the unit tests on the code provided.
+    Ask user input for more information
+  expected_output: >
+    A description of whether or not the code written for the {project} project passes the tests.
+  agent: test_agent

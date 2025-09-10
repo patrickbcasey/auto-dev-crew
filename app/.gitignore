@@ -1,0 +1,11 @@
+SWE-bench/
+bench/
+projvenv/
+__pycache__
+swe-bench*.json
+clones/
+*.venv
+*.env
+holding/
+lib/
+.DS_Store
